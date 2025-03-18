@@ -84,8 +84,6 @@ func TestMuxerNegotiation(t *testing.T) {
 	}
 
 	for _, tc := range testcases {
-		tc := tc
-
 		for _, sec := range securities {
 			sec := sec
 
