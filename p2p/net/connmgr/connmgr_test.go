@@ -144,7 +144,7 @@ func TestConnTrimming(t *testing.T) {
 	defer cm.Close()
 	not := cm.Notifee()
 
-	var conns []network.Conn
+	conns := make([]network.Conn, 0, 300)
 	for i := 0; i < 300; i++ {
 		rc := randConn(t, nil)
 		conns = append(conns, rc)
@@ -531,7 +531,7 @@ func TestPeerProtectionSingleTag(t *testing.T) {
 	}
 
 	// protect the first 5 peers.
-	var protected []network.Conn
+	protected := make([]network.Conn, 0, 5)
 	for _, c := range conns[0:5] {
 		cm.Protect(c.RemotePeer(), "global")
 		protected = append(protected, c)
@@ -610,7 +610,7 @@ func TestPeerProtectionMultipleTags(t *testing.T) {
 	}
 
 	// protect the first 5 peers under two tags.
-	var protected []network.Conn
+	protected := make([]network.Conn, 0, 5)
 	for _, c := range conns[0:5] {
 		cm.Protect(c.RemotePeer(), "tag1")
 		cm.Protect(c.RemotePeer(), "tag2")
